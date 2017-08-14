@@ -1,0 +1,41 @@
+<div id='app-root' class="container-fluid">
+    <div class="row">
+        <div class="col-sm-3">
+            <MenuComponent />
+        </div>
+        <div class="col-sm-9">
+            <div id="app"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+    import  MenuComponent from '../navmenu/navmenu.html';
+    import SvelteRouter from 'svelte-router';
+
+    import Home from '../home/home.html';
+    import Counter from '../counter/counter.html';
+    import FetchData from '../fetchdata/fetchdata.html';
+
+    const { createRouter } = SvelteRouter;
+
+    const routes = {
+        '/': Home,  
+        '/counter': Counter,
+        '/fetchdata': FetchData
+    };
+
+    const router = createRouter(routes);
+
+    export default {
+        components: {
+            MenuComponent
+        },
+        oncreate () {
+            router.create('#app');
+        },
+        ondestroy () {
+            router.destroy()
+        },
+    };
+</script>

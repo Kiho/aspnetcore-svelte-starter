@@ -1,0 +1,29 @@
+{
+  "name": "aspnetcore-svelte",
+  "version": "0.0.1",
+  "main": "main.js",
+  "scripts": {
+    "build": "webpack"
+  },  
+  "devDependencies": {
+    "@types/requirejs": "^2.1.28",
+    "aspnet-webpack": "^2.0.1",
+    "awesome-typescript-loader": "^3.2.2",
+    "bootstrap": "^3.3.6",
+    "css-loader": "^0.28.4",
+    "event-source-polyfill": "^0.0.9",
+    "extract-text-webpack-plugin": "^2.0.0",
+    "file-loader": "^0.11.2",
+    "isomorphic-fetch": "^2.2.1",
+    "jquery": "^3.1.1",
+    "style-loader": "^0.18.2",
+    "ts-loader": "^2.3.2",
+    "typescript": "^2.4.2",
+    "url-loader": "^0.5.9",
+    "svelte": "^1.29.1",
+    "svelte-router": "^1.1.0",
+    "svelte-loader": "^2.1.0",
+    "webpack": "^2.6.1",
+    "webpack-hot-middleware": "^2.18.2"
+  }
+}
