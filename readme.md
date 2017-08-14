@@ -18,12 +18,14 @@ on the [Vue SPA template](https://github.com/aspnet/JavaScriptServices/tree/dev/
 # Prerequisites:
  * nodejs >6
  * VS2017 or VS Code
- * dotnet core
+ * dotnet core - [NET Core SDK 1.0 RC4 (or later)](https://www.microsoft.com/net/download/core) for Windows, Mac, or Linux
 
 # Installation / Getting Started:
  * Clone this repo
  * At the repo's root directory run `dotnet restore`
  * Restore Node dependencies by running `npm install`
+ * `npm run build:vendor` 
+ * `npm run build`
  * Run the application (`dotnet run`)
  
  or

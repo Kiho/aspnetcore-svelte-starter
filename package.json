@@ -3,7 +3,8 @@
   "version": "0.0.1",
   "main": "main.js",
   "scripts": {
-    "build": "webpack"
+    "build": "webpack",
+    "build:vendor": "webpack --config webpack.config.vendor.js"
   },  
   "devDependencies": {
     "@types/requirejs": "^2.1.28",
