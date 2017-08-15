@@ -16,8 +16,8 @@ module.exports = (env) => {
                 'event-source-polyfill',
                 'isomorphic-fetch',
                 'jquery',
-                'svelte',
-                'svelte-router'
+                'vue',
+                'vue-router'
             ],
         },
         module: {
@@ -28,7 +28,7 @@ module.exports = (env) => {
         },
         output: { 
             path: path.join(__dirname, 'wwwroot', 'dist'),
-            publicPath: '/dist/',
+            publicPath: 'dist/',
             filename: '[name].js',
             library: '[name]_[hash]'
         },
