@@ -18,7 +18,7 @@ on the [Vue SPA template](https://github.com/aspnet/JavaScriptServices/tree/dev/
 # Prerequisites:
  * nodejs >6
  * VS2017 or VS Code
- * dotnet core - [NET Core SDK 1.0 RC4 (or later)](https://www.microsoft.com/net/download/core) for Windows, Mac, or Linux
+ * dotnet core - [NET Core SDK 2.0 (or later)](https://www.microsoft.com/net/download/core) for Windows, Mac, or Linux
 
 # Installation / Getting Started:
  * Clone this repo
