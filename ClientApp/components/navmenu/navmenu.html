@@ -13,17 +13,17 @@
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li>
-                    <RouterLink to="/" class="router-link-exact-active router-link-active">
+                    <RouterLink to="/" location={{currentPath}} class="router-link-exact-active router-link-active">
                         <span class="glyphicon glyphicon-home"></span> Home
                     </RouterLink>    
                 </li>
                 <li>
-                    <RouterLink to="/counter">
+                    <RouterLink to="/counter" location={{currentPath}} >
                         <span class="glyphicon glyphicon-education"></span> Counter
                     </RouterLink>     
                 </li>
                 <li>
-                    <RouterLink to="/fetchdata">
+                    <RouterLink to="/fetchdata" location={{currentPath}} >
                         <span class="glyphicon glyphicon-th-list"></span> Fetch Data
                     </RouterLink> 
                 </li>
@@ -34,11 +34,24 @@
 
 <script>
     import RouterLink from './routerlink.html';
+    import roadtrip from 'roadtrip';
 
     export default {
+        data () {
+        return {
+          currentPath: '',
+        }
+      },
         components: {
             RouterLink
-        }
+        },
+        oncreate () {
+            roadtrip.Routing.notify = routeData => {                
+                const path = routeData ? routeData.pathname : '';
+                this.set({currentPath: '/' + path});
+                console.log('NavMenu : routeData', routeData, path);
+            };
+      },
     }
 </script> 
 

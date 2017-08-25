@@ -3,39 +3,36 @@
   </a>
   
   <script>
-    // import history from '~utils/history'
+    import roadtrip from 'roadtrip';
+
     const activedClassName = 'router-link-active'
     
     export default {
       data () {
         return {
           to: '/',
-          basePath: '#',
+          basePath: '',
           active: '',
-          event: null
+          event: null,
+          location: '',
         }
       },
-      oncreate () {
-        this.setActivedClass(history.location)
-        this.set({
-          event: history.listen(this.setActivedClass.bind(this))
-        })
-      },
-      ondestroy () {
-        this.get('event')()
+      oncreate () {    
+        this.observe('location', location => {
+            // console.log(location);
+            this.setActivedClass(location);
+        });
       },
       methods: {
         navigate ($e, to) {
           if ($e && $e.preventDefault) $e.preventDefault()
-          if (to) {
-            const { pathname } = history.location
-            if (pathname !== to) {
-              history.push(to)
-            }
+          // console.log('roadtrip.RouteData', roadtrip.RouteData);          
+          if (to) {            
+            roadtrip.goto(to);
           }
         },
         setActivedClass (location) {
-          if (location.pathname === this.get('to')) {
+          if (location === this.get('to')) {
             this.set({ active: activedClassName })
           } else {
             this.set({ active: '' })

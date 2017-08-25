@@ -1,5 +1,7 @@
 import roadtrip from 'roadtrip';
 
+roadtrip.Routing ={}
+
 export default class IndexHandler {
     component
 
@@ -11,18 +13,14 @@ export default class IndexHandler {
         return {
             enter: (current, previous) => { 
                 this.component = new this.ctor({
-                    target: this.target, // document.getElementById('app'),
-                    data: {
-                        name: 'world'
-                    }
-                });           
-                roadtrip.RouteData = current;
-                console.log('Entered', current);                
-                console.log('roadtrip', roadtrip);
+                    target: this.target,
+                });   
+                console.log('Entered!', current); 
+                roadtrip.Routing.notify(current); 
             },
             leave: (current, previous) => {
                 this.component.destroy();
-                console.log('Left index!');
+                console.log('Left!', current);                
             }
         }
     }
