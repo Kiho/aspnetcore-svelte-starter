@@ -5,7 +5,7 @@
   "scripts": {
     "build": "webpack",
     "build:vendor": "webpack --config webpack.config.vendor.js"
-  },  
+  },
   "devDependencies": {
     "@types/requirejs": "^2.1.28",
     "aspnet-webpack": "^2.0.1",
@@ -18,13 +18,16 @@
     "isomorphic-fetch": "^2.2.1",
     "jquery": "^3.1.1",
     "style-loader": "^0.18.2",
+    "svelte": "^1.30.0",
+    "svelte-loader": "^2.1.0",
+    "svelte-router": "^1.1.0",
     "ts-loader": "^2.3.2",
     "typescript": "^2.4.2",
     "url-loader": "^0.5.9",
-    "svelte": "^1.29.1",
-    "svelte-router": "^1.1.0",
-    "svelte-loader": "^2.1.0",
     "webpack": "^2.6.1",
     "webpack-hot-middleware": "^2.18.2"
+  },
+  "dependencies": {
+    "roadtrip": "^0.5.1"
   }
 }
