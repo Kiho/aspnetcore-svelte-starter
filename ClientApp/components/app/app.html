@@ -10,32 +10,25 @@
 </div>
 
 <script>
-    import  MenuComponent from '../navmenu/navmenu.html';
-    import SvelteRouter from 'svelte-router';
+    import MenuComponent from '../navmenu/navmenu.html';
+    import Routes from '../../routes';
 
-    import Home from '../home/home.html';
-    import Counter from '../counter/counter.html';
-    import FetchData from '../fetchdata/fetchdata.html';
-
-    const { createRouter } = SvelteRouter;
-
-    const routes = {
-        '/': Home,  
-        '/counter': Counter,
-        '/fetchdata': FetchData
-    };
-
-    const router = createRouter(routes);
+    let router;
 
     export default {
         components: {
             MenuComponent
         },
         oncreate () {
-            router.create('#app');
+            const target = document.querySelector('#app');
+            router = new Routes(target);
+            console.log('router', router);
+            // router.observe('RouteData', routeData => {
+            //     console.log(routeData);
+            // });
         },
         ondestroy () {
-            router.destroy()
+            // router.destroy()
         },
     };
 </script>

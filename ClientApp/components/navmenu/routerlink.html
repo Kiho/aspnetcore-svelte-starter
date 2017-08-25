@@ -1,0 +1,46 @@
+<a href='{{basePath}}{{ to }}' class="{{active}}" on:click='navigate(event, to)'>
+    {{ yield }}
+  </a>
+  
+  <script>
+    // import history from '~utils/history'
+    const activedClassName = 'router-link-active'
+    
+    export default {
+      data () {
+        return {
+          to: '/',
+          basePath: '#',
+          active: '',
+          event: null
+        }
+      },
+      oncreate () {
+        this.setActivedClass(history.location)
+        this.set({
+          event: history.listen(this.setActivedClass.bind(this))
+        })
+      },
+      ondestroy () {
+        this.get('event')()
+      },
+      methods: {
+        navigate ($e, to) {
+          if ($e && $e.preventDefault) $e.preventDefault()
+          if (to) {
+            const { pathname } = history.location
+            if (pathname !== to) {
+              history.push(to)
+            }
+          }
+        },
+        setActivedClass (location) {
+          if (location.pathname === this.get('to')) {
+            this.set({ active: activedClassName })
+          } else {
+            this.set({ active: '' })
+          }
+        }
+      }
+    }
+  </script>
