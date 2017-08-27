@@ -6,29 +6,29 @@ import Counter from './components/counter/counter.html';
 import FetchData from './components/fetchdata/fetchdata.html';
 
 export default class Routes {
-  router;
+    router;
 
-  index_handler;
-  counter_handler;
-  fetchdata_handler;
+    indexHandler;
+    counterHandler;
+    fetchdataHandler;
 
-  constructor(target: Element) {
-    this.router = roadtrip;
-    this.init(target);
-  }
+    constructor(target: Element) {
+        this.router = roadtrip;
+        this.init(target);
+    }
 
-  init(target) {
-    this.index_handler = new IndexHandler(Home, target);
-    this.counter_handler = new IndexHandler(Counter, target);
-    this.fetchdata_handler = new IndexHandler(FetchData, target);
+    init(target) {
+        this.indexHandler = new IndexHandler(Home, target);
+        this.counterHandler = new IndexHandler(Counter, target);
+        this.fetchdataHandler = new IndexHandler(FetchData, target);
 
-    this.router
-      .add('/', this.index_handler.route)
-      .add('/counter', this.counter_handler.route)
-      .add('/fetchdata', this.fetchdata_handler.route)
-    //   .add('/users/:id', this.user_details_handler.route)
-      .start({
-        fallback: '/'
-      });
-  }
+        this.router
+            .add('/', this.indexHandler.route)
+            .add('/counter', this.counterHandler.route)
+            .add('/fetchdata', this.fetchdataHandler.route)
+            //   .add('/fetchdata/:id', this.fetchdataDetailsHandler.route)
+            .start({
+              fallback: '/'
+            });
+    }
 }

@@ -1,43 +1,42 @@
 <a href='{{basePath}}{{ to }}' class="{{active}}" on:click='navigate(event, to)'>
     {{ yield }}
-  </a>
-  
-  <script>
+</a>
+
+<script>
     import roadtrip from 'roadtrip';
 
     const activedClassName = 'router-link-active'
     
     export default {
-      data () {
-        return {
-          to: '/',
-          basePath: '',
-          active: '',
-          event: null,
-          location: '',
-        }
-      },
-      oncreate () {    
-        this.observe('location', location => {
-            // console.log(location);
-            this.setActivedClass(location);
-        });
-      },
-      methods: {
-        navigate ($e, to) {
-          if ($e && $e.preventDefault) $e.preventDefault()
-          // console.log('roadtrip.RouteData', roadtrip.RouteData);          
-          if (to) {            
-            roadtrip.goto(to);
-          }
+        data () {
+            return {
+              to: '/',
+              basePath: '',
+              active: '',
+              location: '',
+            }
         },
-        setActivedClass (location) {
-          if (location === this.get('to')) {
-            this.set({ active: activedClassName })
-          } else {
-            this.set({ active: '' })
-          }
+        oncreate () {    
+            this.observe('location', location => {
+                // console.log(location);
+                this.setActivedClass(location);
+            });
+        },
+        methods: {
+            navigate ($e, to) {
+                if ($e && $e.preventDefault) $e.preventDefault()
+                // console.log('roadtrip.RouteData', roadtrip.RouteData);          
+                if (to) {            
+                    roadtrip.goto(to);
+                }
+            },
+            setActivedClass (location) {
+                if (location === this.get('to')) {
+                    this.set({ active: activedClassName })
+                } else {
+                    this.set({ active: '' })
+                }
+            }
         }
-      }
     }
-  </script>
+</script>
