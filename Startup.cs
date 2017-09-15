@@ -33,7 +33,10 @@ namespace SvelteSpa
                 app.UseDeveloperExceptionPage();
                 app.UseWebpackDevMiddleware(new WebpackDevMiddlewareOptions
                 {
-                    HotModuleReplacement = true
+                    HotModuleReplacement = true,
+                    HotModuleReplacementClientOptions = new Dictionary<string, string> {
+                        { "reload", "true" },
+                    },
                 });
             }
             else
