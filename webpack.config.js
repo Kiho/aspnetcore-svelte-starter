@@ -14,7 +14,7 @@ module.exports = (env) => {
         entry: { 'main': './ClientApp/boot.ts' },
         module: {
             rules: [
-                { test: /\.html$/, include: /ClientApp/, loader: 'svelte-loader', options: { loaders: { js: 'awesome-typescript-loader?silent=true' } } },
+                { test: /\.html$/, include: /ClientApp/, use: { loader: 'svelte-loader', options: { dev: isDevBuild } } },
                 { test: /\.ts$/, include: /ClientApp/, use: 'awesome-typescript-loader?silent=true' },
                 { test: /\.css$/, use: isDevBuild ? [ 'style-loader', 'css-loader' ] : ExtractTextPlugin.extract({ use: 'css-loader?minimize' }) },
                 { test: /\.(png|jpg|jpeg|gif|svg)$/, use: 'url-loader?limit=25000' }
