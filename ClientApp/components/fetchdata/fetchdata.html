@@ -38,7 +38,7 @@
             };
         },
         oncreate () {
-            fetch('/api/SampleData/WeatherForecasts')
+            fetch(basePath + 'api/SampleData/WeatherForecasts')
                 .then(response => response.json())
                 .then(data => {
                     this.set({forecasts: data});

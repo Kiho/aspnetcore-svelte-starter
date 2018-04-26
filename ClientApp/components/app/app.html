@@ -13,19 +13,14 @@
     import MenuComponent from '../navmenu/navmenu.html';
     import Routes from '../../routes';
 
-    let router;
-
     export default {
         components: {
             MenuComponent
         },
         oncreate () {
             const target = document.querySelector('#app');
-            router = new Routes(target);
+            new Routes(target);
             // console.log('router', router);
-        },
-        ondestroy () {
-            // router.destroy()
         },
     };
 </script>
