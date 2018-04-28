@@ -46,10 +46,11 @@
             RouterLink
         },
         oncreate () {
-            roadtrip.Routing.notify = routeData => {                
+            roadtrip.Routing.notify = routeData => { 
+                const { currentPath } = this.get();         
                 const path = routeData ? routeData.pathname : '';
-                this.set({currentPath: '/' + path});
-                console.log('NavMenu : routeData', routeData, path);
+                this.set({ currentPath: '/' + path });
+                console.log('NavMenu : routeData', routeData, path, currentPath);
             };
       },
     }

@@ -1,19 +1,28 @@
-<a href='{{basePath}}{{ to }}' class="{{active}}" on:click='navigate(event, to)'>
-    {{ yield }}
+{{#if li}}
+<li class="{{ calssName + ' ' + active }}">
+    <a href='{{basePath}}{{ to }}' on:click='navigate(event, to)'>
+        <slot></slot>
+    </a>
+</li>
+{{else}}
+<a href='{{basePath}}{{ to }}' class="{{ calssName + ' ' + active }}" on:click='navigate(event, to)'>
+    <slot></slot>
 </a>
+{{/if}}
 
 <script>
     import roadtrip from 'roadtrip';
 
-    const activedClassName = 'router-link-active'
+    const activedClassName = 'router-link-active';
     
     export default {
         data () {
             return {
-              to: '/',
-              basePath: '',
-              active: '',
-              location: '',
+                to: '/',
+                basePath: window.basePath,
+                active: '',
+                location: '',
+                item: null
             }
         },
         oncreate () {    
@@ -25,17 +34,22 @@
         methods: {
             navigate ($e, to) {
                 if ($e && $e.preventDefault) $e.preventDefault()
-                // console.log('roadtrip.RouteData', roadtrip.RouteData);          
-                if (to) {            
-                    roadtrip.goto(to);
+                // console.log('roadtrip.RouteData', roadtrip.RouteData);
+                const {item} = this.get();
+                if (item) {
+                    this.fire('itemClick', event, item);
+                } else if (to) {            
+                    roadtrip.goto(basePath + to);
                 }
             },
-            setActivedClass (location) {
-                if (location === this.get('to')) {
+            setActivedClass (location) {                
+                const { basePath, to } = this.get();
+                if (location === `${basePath}${to}`) {
                     this.set({ active: activedClassName })
                 } else {
                     this.set({ active: '' })
                 }
+                console.log('setActivedClass (location)', location, `${basePath}${to}`);
             }
         }
     }

@@ -7,9 +7,9 @@
     <base href="~/" />
 
     <link rel="stylesheet" href="~/dist/vendor.css" asp-append-version="true" />
-    <script> var siteName = ''; var basePath = ''</script>
+    <script> var basePath = ''</script>
     <environment exclude="Development">
-        <script> siteName = '/asp-svelte'; </script>
+        <script> basePath = '@Url.Content("~/")'; </script>
         <link rel="stylesheet" href="~/dist/site.css" asp-append-version="true" />
     </environment>
 </head>
