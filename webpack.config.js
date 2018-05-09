@@ -1,14 +1,17 @@
 const path = require('path');
 const webpack = require('webpack');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
-const CheckerPlugin = require('awesome-typescript-loader').CheckerPlugin;
 const bundleOutputDir = './wwwroot/dist';
+// process.traceDeprecation = true;
 
 module.exports = (env) => {
     const isDevBuild = !(env && env.prod);
     const bundleOutputDir = './wwwroot/dist';
+    const mode = process.env.NODE_ENV || 'development';
+
     return [{
+        mode,
         stats: { modules: false },
         context: __dirname,
         resolve: { extensions: [ '.js', '.ts' ] },
@@ -16,8 +19,15 @@ module.exports = (env) => {
         module: {
             rules: [
                 { test: /\.html$/, include: /ClientApp/, use: { loader: 'svelte-loader', options: { dev: isDevBuild } } },
-                { test: /\.ts$/, include: /ClientApp/, use: 'awesome-typescript-loader?silent=true' },
-                { test: /\.css$/, use: isDevBuild ? [ 'style-loader', 'css-loader' ] : ExtractTextPlugin.extract({ use: 'css-loader?minimize' }) },
+                { test: /\.ts$/, include: /ClientApp/, use: 'ts-loader' },
+                { test: /\.css$/, use: [
+					/**
+					 * MiniCssExtractPlugin doesn't support HMR.
+					 * For developing, use 'style-loader' instead.
+					 * */
+					isDevBuild ? 'style-loader' : MiniCssExtractPlugin.loader,
+					'css-loader'
+				]},
                 { test: /\.(png|jpg|jpeg|gif|svg)$/, use: 'url-loader?limit=25000' }
             ]
         },
@@ -27,7 +37,7 @@ module.exports = (env) => {
             publicPath: '/dist/'
         },
         plugins: [
-            new CheckerPlugin(),
+            // new CheckerPlugin(),
             new webpack.DefinePlugin({
                 'process.env': {
                     NODE_ENV: JSON.stringify(isDevBuild ? 'development' : 'production')

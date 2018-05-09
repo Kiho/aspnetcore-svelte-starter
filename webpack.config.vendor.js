@@ -1,14 +1,15 @@
 const path = require('path');
 const webpack = require('webpack');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = (env) => {
     const isDevBuild = !(env && env.prod);
-    const extractCSS = new ExtractTextPlugin('vendor.css');
+    const mode = process.env.NODE_ENV || 'development';
 
     return [{
         stats: { modules: false },
         resolve: { extensions: [ '.js' ] },
+        mode,
         entry: {
             vendor: [
                 'bootstrap',
@@ -20,7 +21,14 @@ module.exports = (env) => {
         },
         module: {
             rules: [
-                { test: /\.css(\?|$)/, use: extractCSS.extract({ use: isDevBuild ? 'css-loader' : 'css-loader?minimize' }) },
+                { test: /\.css(\?|$)/, use: [
+					/**
+					 * MiniCssExtractPlugin doesn't support HMR.
+					 * For developing, use 'style-loader' instead.
+					 * */
+					!isDevBuild ? MiniCssExtractPlugin.loader : 'style-loader',
+					'css-loader'
+				]},
                 { test: /\.(png|woff|woff2|eot|ttf|svg)(\?|$)/, use: 'url-loader?limit=100000' }
             ]
         },
@@ -31,7 +39,6 @@ module.exports = (env) => {
             library: '[name]_[hash]'
         },
         plugins: [
-            extractCSS,
             new webpack.ProvidePlugin({ $: 'jquery', jQuery: 'jquery' }), // Maps these identifiers to the jQuery package (because Bootstrap expects it to be a global variable)
             new webpack.DefinePlugin({
                 'process.env.NODE_ENV': isDevBuild ? '"development"' : '"production"'
@@ -41,6 +48,7 @@ module.exports = (env) => {
                 name: '[name]_[hash]'
             })
         ].concat(isDevBuild ? [] : [
+            new MiniCssExtractPlugin({ filename: 'vendor.css' }),
             new webpack.optimize.UglifyJsPlugin()
         ])
     }];
