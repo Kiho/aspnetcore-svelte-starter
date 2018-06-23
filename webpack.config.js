@@ -3,7 +3,7 @@ const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const bundleOutputDir = './wwwroot/dist';
-// process.traceDeprecation = true;
+process.traceDeprecation = true;
 
 module.exports = (env) => {
     const isDevBuild = !(env && env.prod);
@@ -37,7 +37,6 @@ module.exports = (env) => {
             publicPath: '/dist/'
         },
         plugins: [
-            // new CheckerPlugin(),
             new webpack.DefinePlugin({
                 'process.env': {
                     NODE_ENV: JSON.stringify(isDevBuild ? 'development' : 'production')
@@ -54,6 +53,7 @@ module.exports = (env) => {
                 moduleFilenameTemplate: path.relative(bundleOutputDir, '[resourcePath]') // Point sourcemap entries to the original file locations on disk
             })
         ] : [
+            new MiniCssExtractPlugin({ filename: 'site.css' }),
             new UglifyJSPlugin({sourceMap: true}),
             new webpack.SourceMapDevToolPlugin({
                 filename: '[file].map', // Remove this line if you prefer inline source maps

@@ -26,12 +26,6 @@
           item: null
         };
       },
-      // oncreate () {
-      //     this.observe('location', location => {
-      //         // console.log(location);
-      //         this.setActivedClass(location);
-      //     });
-      // },
       onupdate({ changed, current }) {
         if (changed.location) {
           this.setActivedClass(current.location);

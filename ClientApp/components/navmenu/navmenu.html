@@ -62,9 +62,9 @@
     }
 
     /* Highlighting rules for nav menu items */
-    .main-nav li a.router-link-active,
-    .main-nav li a.router-link-active:hover,
-    .main-nav li a.router-link-active:focus {
+    .main-nav li :global(a.router-link-active),
+    .main-nav li :global(a.router-link-active:hover),
+    .main-nav li :global(a.router-link-active:focus) {
         background-color: #4189C7;
         color: white;
     }
@@ -80,7 +80,7 @@
 
     @media (max-width: 767px) {
         /* On small screens, the nav menu spans the full width of the screen. Leave a space for it. */
-        body {
+        :global(body) {
             padding-top: 50px;
         }
     }
@@ -111,11 +111,11 @@
             font-size: 15px;
             margin: 6px;
         }
-        .main-nav .navbar li a {
+        .main-nav .navbar li :global(a) {
             padding: 10px 16px;
             border-radius: 4px;
         }
-        .main-nav .navbar a {
+        .main-nav .navbar :global(a) {
             /* If a menu item's text is too long, truncate it */
             width: 100%;
             white-space: nowrap;
