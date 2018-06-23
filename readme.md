@@ -9,16 +9,15 @@ on the [Vue SPA template](https://github.com/aspnet/JavaScriptServices/tree/dev/
 
 - **ASP.NET Core**
   - Web API
-- **Svelte**
-- **Webpack 2**
-  - HMR is not supported by svelte-loader currently
-- **Bootstrap**
+- **Svelte 2.x**
+- **Webpack 4.x**
+- **Bootstrap 3.x**
 
 
 # Prerequisites:
- * nodejs >6
+ * nodejs > 6
  * VS2017 or VS Code
- * dotnet core - [NET Core SDK 2.0 (or later)](https://www.microsoft.com/net/download/core) for Windows, Mac, or Linux
+ * dotnet core - [NET Core SDK 2.1 (or later)](https://www.microsoft.com/net/download/core) for Windows, Mac, or Linux
 
 # Installation / Getting Started:
  * Clone this repo
