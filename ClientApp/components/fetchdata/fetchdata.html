@@ -3,7 +3,7 @@
 
     <p>This component demonstrates fetching data from the server.</p>
 
-    {{#if forecasts.length}}
+    {#if forecasts.length}
     <table class="table">
         <thead>
             <tr>
@@ -14,19 +14,19 @@
             </tr>
         </thead>
         <tbody>
-            {{#each forecasts as item}}
+            {#each forecasts as item}
             <tr>
-                <td>{{ item.dateFormatted }}</td>
-                <td>{{ item.temperatureC }}</td>
-                <td>{{ item.temperatureF }}</td>
-                <td>{{ item.summary }}</td>
+                <td>{ item.dateFormatted }</td>
+                <td>{ item.temperatureC }</td>
+                <td>{ item.temperatureF }</td>
+                <td>{ item.summary }</td>
             </tr>
-            {{/each}}
+            {/each}
         </tbody>
     </table>
-    {{else}}
+    {:else}
     <p><em>Loading...</em></p>
-    {{/if}}
+    {/if}
     
 </div>
 

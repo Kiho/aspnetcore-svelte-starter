@@ -1,56 +1,62 @@
-{{#if li}}
-<li class="{{ calssName + ' ' + active }}">
-    <a href='{{basePath}}{{ to }}' on:click='navigate(event, to)'>
+{#if li}
+<li class="{ calssName + ' ' + active }">
+    <a href='{basePath}{ to }' on:click='navigate(event, to)'>
         <slot></slot>
     </a>
 </li>
-{{else}}
-<a href='{{basePath}}{{ to }}' class="{{ calssName + ' ' + active }}" on:click='navigate(event, to)'>
+{:else}
+<a href='{basePath}{ to }' class="{ calssName + ' ' + active }" on:click='navigate(event, to)'>
     <slot></slot>
 </a>
-{{/if}}
+{/if}
 
 <script>
-    import roadtrip from 'roadtrip';
+    import roadtrip from "roadtrip";
 
-    const activedClassName = 'router-link-active';
-    
+    const activedClassName = "router-link-active";
+
     export default {
-        data () {
-            return {
-                to: '/',
-                basePath: window.basePath,
-                active: '',
-                location: '',
-                item: null
-            }
-        },
-        oncreate () {    
-            this.observe('location', location => {
-                // console.log(location);
-                this.setActivedClass(location);
-            });
-        },
-        methods: {
-            navigate ($e, to) {
-                if ($e && $e.preventDefault) $e.preventDefault()
-                // console.log('roadtrip.RouteData', roadtrip.RouteData);
-                const {item} = this.get();
-                if (item) {
-                    this.fire('itemClick', event, item);
-                } else if (to) {            
-                    roadtrip.goto(basePath + to);
-                }
-            },
-            setActivedClass (location) {                
-                const { basePath, to } = this.get();
-                if (location === `${basePath}${to}`) {
-                    this.set({ active: activedClassName })
-                } else {
-                    this.set({ active: '' })
-                }
-                console.log('setActivedClass (location)', location, `${basePath}${to}`);
-            }
+      data() {
+        return {
+          calssName: "",
+          to: "/",
+          basePath: basePath,
+          active: "",
+          location: "",
+          item: null
+        };
+      },
+      // oncreate () {
+      //     this.observe('location', location => {
+      //         // console.log(location);
+      //         this.setActivedClass(location);
+      //     });
+      // },
+      onupdate({ changed, current }) {
+        if (changed.location) {
+          this.setActivedClass(current.location);
         }
-    }
+      },
+      methods: {
+        navigate($e, to) {
+          if ($e && $e.preventDefault) $e.preventDefault();
+          // console.log('roadtrip.RouteData', roadtrip.RouteData);
+          const { item } = this.get();
+          if (item) {
+            this.fire("itemClick", event, item);
+          } else if (to) {
+            roadtrip.goto(basePath + to);
+          }
+        },
+        setActivedClass(location) {
+          const { basePath, to } = this.get();
+          if (location === `${basePath}${to}`) {
+            this.set({ active: activedClassName });
+          } else {
+            this.set({ active: "" });
+          }
+          console.log("setActivedClass (location)", location, `${basePath}${to}`);
+        }
+      }
+    };
 </script>

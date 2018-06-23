@@ -11,11 +11,11 @@ declare class Svelte {
 
     fire(eventName: string, event?: any);
 
-    observe(
-        name: string,
-        callback: (newValue?, oldValue?) => any,
-        options?: { init?: boolean, defer?: boolean })
-        : () => { cancel: () => any };
+    // observe(
+    //     name: string,
+    //     callback: (newValue?, oldValue?) => any,
+    //     options?: { init?: boolean, defer?: boolean })
+    //     : () => { cancel: () => any };
 
     ondestroy (): void;
 

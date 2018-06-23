@@ -8,6 +8,7 @@
   },
   "devDependencies": {
     "@types/requirejs": "^2.1.31",
+    "ajv": "^6.5.1",
     "aspnet-webpack": "^2.0.3",
     "bootstrap": "^3.3.6",
     "css-loader": "^0.28.11",
@@ -20,7 +21,7 @@
     "npm": "^6.0.0",
     "roadtrip": "^0.6.1",
     "style-loader": "^0.21.0",
-    "svelte": "^1.61.0",
+    "svelte": "^2.8.1",
     "svelte-loader": "~2.8.0",
     "ts-loader": "^4.2.0",
     "typescript": "^2.8.3",
