@@ -3,7 +3,7 @@ const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const bundleOutputDir = './wwwroot/dist';
-process.traceDeprecation = true;
+// process.traceDeprecation = true;
 
 module.exports = (env) => {
     const isDevBuild = !(env && env.prod);
