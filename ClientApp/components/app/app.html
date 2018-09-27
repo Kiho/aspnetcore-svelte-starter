@@ -1,11 +1,12 @@
-<div id='app-root' class="container-fluid">
-    <div class="row">
-        <div class="col-sm-3">
-            <MenuComponent ref:menu />
-        </div>
-        <div class="col-sm-9">
-            <div id="app"></div>
-        </div>
+<div class="sidebar">
+    <MenuComponent ref:menu />
+</div>
+<div class="main">
+    <div class="top-row px-4">
+        <a href="https://svelte.technology/" target="_blank" class="ml-md-auto">About Svelte</a>
+    </div>
+
+    <div id="app" class="content px-4">
     </div>
 </div>
 
@@ -17,7 +18,7 @@
         components: {
             MenuComponent
         },
-        oncreate () {
+        oncreate() {
             const target = document.querySelector('#app');
             new Routes(target);
             // console.log('router', router);

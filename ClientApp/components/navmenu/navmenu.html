@@ -1,35 +1,21 @@
-<div class="main-nav">
-    <div class="navbar navbar-inverse">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="/">Svelte Js Services</a>
-        </div>
-        <div class="clearfix"></div>
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-                <li>
-                    <RouterLink to="/" location={currentPath} class="router-link-exact-active router-link-active">
-                        <span class="glyphicon glyphicon-home"></span> Home
-                    </RouterLink>    
-                </li>
-                <li>
-                    <RouterLink to="/counter" location={currentPath} >
-                        <span class="glyphicon glyphicon-education"></span> Counter
-                    </RouterLink>     
-                </li>
-                <li>
-                    <RouterLink to="/fetchdata" location={currentPath} >
-                        <span class="glyphicon glyphicon-th-list"></span> Fetch Data
-                    </RouterLink> 
-                </li>
-            </ul>
-        </div>
-    </div>
+<div class="top-row pl-4 navbar navbar-dark">
+    <a class="navbar-brand" href="">ASP.Net Svelte</a>
+    <button class="navbar-toggler">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+</div>
+<div class="collapse">
+    <ul class="nav flex-column">
+        <RouterLink className="nav-item px-3" to="/" location={currentPath}>
+            <span class="oi oi-home" aria-hidden="true"></span> Home
+        </RouterLink>
+        <RouterLink className="nav-item px-3" to="/counter" location={currentPath}>
+            <span class="oi oi-plus" aria-hidden="true"></span> Counter
+        </RouterLink>
+        <RouterLink className="nav-item px-3" to="/fetchdata" location={currentPath}>
+            <span class="oi oi-list-rich" aria-hidden="true"></span> Fetch data
+        </RouterLink>
+    </ul>
 </div>
 
 <script>
@@ -37,90 +23,21 @@
     import roadtrip from 'roadtrip';
 
     export default {
-        data () {
-        return {
-          currentPath: '',
-        }
-      },
+        data() {
+            return {
+                currentPath: '',
+            }
+        },
         components: {
             RouterLink
         },
-        oncreate () {
-            roadtrip.Routing.notify = routeData => { 
-                const { currentPath } = this.get();         
+        oncreate() {
+            roadtrip.Routing.notify = routeData => {
+                const { currentPath } = this.get();
                 const path = routeData ? routeData.pathname : '';
                 this.set({ currentPath: '/' + path });
                 console.log('NavMenu : routeData', routeData, path, currentPath);
             };
-      },
+        },
     }
-</script> 
-
-<style>
-    .main-nav li .glyphicon {
-        margin-right: 10px;
-    }
-
-    /* Highlighting rules for nav menu items */
-    .main-nav li :global(a.router-link-active),
-    .main-nav li :global(a.router-link-active:hover),
-    .main-nav li :global(a.router-link-active:focus) {
-        background-color: #4189C7;
-        color: white;
-    }
-
-    /* Keep the nav menu independent of scrolling and on top of other items */
-    .main-nav {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        z-index: 1;
-    }
-
-    @media (max-width: 767px) {
-        /* On small screens, the nav menu spans the full width of the screen. Leave a space for it. */
-        :global(body) {
-            padding-top: 50px;
-        }
-    }
-
-    @media (min-width: 768px) {
-        /* On small screens, convert the nav menu to a vertical sidebar */
-        .main-nav {
-            height: 100%;
-            width: calc(25% - 20px);
-        }
-        .main-nav .navbar {
-            border-radius: 0px;
-            border-width: 0px;
-            height: 100%;
-        }
-        .main-nav .navbar-header {
-            float: none;
-        }
-        .main-nav .navbar-collapse {
-            border-top: 1px solid #444;
-            padding: 0px;
-        }
-        .main-nav .navbar ul {
-            float: none;
-        }
-        .main-nav .navbar li {
-            float: none;
-            font-size: 15px;
-            margin: 6px;
-        }
-        .main-nav .navbar li :global(a) {
-            padding: 10px 16px;
-            border-radius: 4px;
-        }
-        .main-nav .navbar :global(a) {
-            /* If a menu item's text is too long, truncate it */
-            width: 100%;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-    }
-</style>
+</script>

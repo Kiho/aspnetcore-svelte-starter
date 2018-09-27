@@ -1,9 +1,10 @@
 const path = require('path');
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = (env) => {
-    const isDevBuild = !(env && env.prod);
+    const isDevBuild = false; //!(env && env.prod);
     const mode = process.env.NODE_ENV || 'development';
 
     return [{
@@ -46,10 +47,10 @@ module.exports = (env) => {
             new webpack.DllPlugin({
                 path: path.join(__dirname, 'wwwroot', 'dist', '[name]-manifest.json'),
                 name: '[name]_[hash]'
-            })
+            }),
         ].concat(isDevBuild ? [] : [
             new MiniCssExtractPlugin({ filename: 'vendor.css' }),
-            new webpack.optimize.UglifyJsPlugin()
+            new UglifyJsPlugin()
         ])
     }];
 };

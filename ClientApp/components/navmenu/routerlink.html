@@ -1,24 +1,17 @@
-{#if li}
-<li class="{ calssName + ' ' + active }">
-    <a href='{basePath}{ to }' on:click='navigate(event, to)'>
+<li class="nav-item px-3">
+    <a class="nav-link {active}" href='{basePath}{ to }' on:click='navigate(event, to)'>
         <slot></slot>
     </a>
 </li>
-{:else}
-<a href='{basePath}{ to }' class="{ calssName + ' ' + active }" on:click='navigate(event, to)'>
-    <slot></slot>
-</a>
-{/if}
 
 <script>
     import roadtrip from "roadtrip";
 
-    const activedClassName = "router-link-active";
+    const activedClassName = "active";
 
     export default {
       data() {
         return {
-          calssName: "",
           to: "/",
           basePath: basePath,
           active: "",
