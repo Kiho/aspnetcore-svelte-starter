@@ -4,6 +4,9 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 // process.traceDeprecation = true;
+const ignoreTheseWarnings = [
+    'a11y-invalid-attribute',
+];
 
 module.exports = (env) => {
     const isDevBuild = !(env && env.prod);
@@ -18,7 +21,16 @@ module.exports = (env) => {
         entry: { 'main': './ClientApp/boot.ts' },
         module: {
             rules: [
-                { test: /\.html$/, include: /ClientApp/, use: { loader: 'svelte-loader', options: { dev: isDevBuild } } },
+                { test: /\.html$/, include: /ClientApp/, 
+                        use: { loader: 'svelte-loader', options: { dev: isDevBuild,
+                            onwarn: (warning, defaultHandler) => {
+                                if (ignoreTheseWarnings.indexOf(warning.code) > -1) return;
+                                console.log('warning : - ', warning);
+                                defaultHandler(warning);
+                            },  
+                        },
+                    } 
+                },
                 { test: /\.ts$/, include: /ClientApp/, use: 'ts-loader' },
                 { test: /\.css$/, use: [
 					/**
