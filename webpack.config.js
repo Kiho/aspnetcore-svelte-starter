@@ -4,9 +4,6 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 // process.traceDeprecation = true;
-const ignoreTheseWarnings = [
-    'a11y-invalid-attribute',
-];
 
 module.exports = (env) => {
     const isDevBuild = !(env && env.prod);
