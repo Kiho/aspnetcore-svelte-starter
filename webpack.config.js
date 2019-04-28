@@ -17,17 +17,22 @@ module.exports = (env) => {
         mode,
         stats: { modules: false },
         context: __dirname,
-        resolve: { extensions: [ '.js', '.ts' ] },
+        resolve: { extensions: [ '.js', '.mjs', '.ts' ] },
         entry: { 'main': './ClientApp/boot.ts' },
         module: {
             rules: [
+                {
+                    test: /\.mjs$/,
+                    include: /node_modules/,
+                    type: 'javascript/auto'
+                },
                 { test: /\.html$/, include: /ClientApp/, 
                         use: { loader: 'svelte-loader', options: { dev: isDevBuild,
-                            onwarn: (warning, defaultHandler) => {
-                                if (ignoreTheseWarnings.indexOf(warning.code) > -1) return;
-                                console.log('warning : - ', warning);
-                                defaultHandler(warning);
-                            },  
+                            // onwarn: (warning, defaultHandler) => {
+                            //     if (ignoreTheseWarnings.indexOf(warning.code) > -1) return;
+                            //     console.log('warning : - ', warning);
+                            //     defaultHandler(warning);
+                            // },  
                         },
                     } 
                 },
