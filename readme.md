@@ -9,7 +9,7 @@ on the [Vue SPA template](https://github.com/aspnet/JavaScriptServices/tree/dev/
 
 - **ASP.NET Core**
   - Web API
-- **Svelte 2.x**
+- **Svelte 3.x**
 - **Webpack 4.x**
 - **Bootstrap 3.x**
 
@@ -17,7 +17,7 @@ on the [Vue SPA template](https://github.com/aspnet/JavaScriptServices/tree/dev/
 # Prerequisites:
  * nodejs > 6
  * VS2017 or VS Code
- * dotnet core - [NET Core SDK 2.1 (or later)](https://www.microsoft.com/net/download/core) for Windows, Mac, or Linux
+ * dotnet core - [NET Core SDK 2.2 (or later)](https://www.microsoft.com/net/download/core) for Windows, Mac, or Linux
 
 # Installation / Getting Started:
  * Clone this repo
