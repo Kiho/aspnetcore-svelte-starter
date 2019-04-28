@@ -11,7 +11,7 @@ on the [Vue SPA template](https://github.com/aspnet/JavaScriptServices/tree/dev/
   - Web API
 - **Svelte 3.x**
 - **Webpack 4.x**
-- **Bootstrap 3.x**
+- **Bootstrap 4.x**
 
 
 # Prerequisites:
