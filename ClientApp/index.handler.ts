@@ -19,7 +19,7 @@ export default class IndexHandler {
                 roadtrip.Routing.notify(current); 
             },
             leave: (current, previous) => {
-                this.component.destroy();
+                this.component.$destroy();
                 console.log('Left!', current);                
             }
         }
