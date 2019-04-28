@@ -1,6 +1,6 @@
 import roadtrip from 'roadtrip';
 
-roadtrip.Routing ={}
+roadtrip.Routing = {};
 
 export default class IndexHandler {
     component

@@ -1,11 +1,9 @@
 import roadtrip from 'roadtrip';
 import IndexHandler from './index.handler';
-
+import { basePath } from './config';
 import Home from './components/home/home.html';
 import Counter from './components/counter/counter.html';
 import FetchData from './components/fetchdata/fetchdata.html';
-
-declare var basePath;
 
 export default class Routes {
     router;

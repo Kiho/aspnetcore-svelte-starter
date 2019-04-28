@@ -1,10 +1,9 @@
 <script>
     import { onMount } from 'svelte';
-
-    export let menu;
-
     import MenuComponent from '../navmenu/navmenu.html';
     import Routes from '../../routes';
+
+    export let menu;
 
     onMount(() => {
         const target = document.querySelector('#app');
