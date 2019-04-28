@@ -1,49 +1,48 @@
-<li class="nav-item px-3">
-    <a class="nav-link {active}" href='{basePath}{ to }' on:click='navigate(event, to)'>
-        <slot></slot>
-    </a>
-</li>
-
 <script>
+    import { afterUpdate, createEventDispatcher } from 'svelte';
+
+    const dispatch = createEventDispatcher();
+
     import roadtrip from "roadtrip";
 
     const activedClassName = "active";
 
-    export default {
-      data() {
-        return {
-          to: "/",
-          basePath: basePath,
-          active: "",
-          location: "",
-          item: null
-        };
-      },
-      onupdate({ changed, current }) {
-        if (changed.location) {
-          this.setActivedClass(current.location);
-        }
-      },
-      methods: {
-        navigate($e, to) {
-          if ($e && $e.preventDefault) $e.preventDefault();
-          // console.log('roadtrip.RouteData', roadtrip.RouteData);
-          const { item } = this.get();
-          if (item) {
-            this.fire("itemClick", event, item);
-          } else if (to) {
-            roadtrip.goto(basePath + to);
-          }
-        },
-        setActivedClass(location) {
-          const { basePath, to } = this.get();
-          if (location === `${basePath}${to}`) {
-            this.set({ active: activedClassName });
-          } else {
-            this.set({ active: "" });
-          }
-          console.log("setActivedClass (location)", location, `${basePath}${to}`);
-        }
-      }
-    };
+    export let active = "";
+    export let to = "/";
+    export let location = "";
+    export let item = null;
+
+    // [svelte-upgrade warning]
+    // beforeUpdate and afterUpdate handlers behave
+    // differently to their v2 counterparts
+    afterUpdate(() => {
+    setActivedClass(location);
+  });
+
+    // [svelte-upgrade suggestion]
+    // review these functions and remove unnecessary 'export' keywords
+    export function navigate($e, to) {
+  if ($e && $e.preventDefault) $e.preventDefault();
+  // console.log('roadtrip.RouteData', roadtrip.RouteData);
+  if (item) {
+    dispatch("itemClick", event, item);
+  } else if (to) {
+    roadtrip.goto(basePath + to);
+  }
+}
+
+    export function setActivedClass(location) {
+  if (location === `${basePath}${to}`) {
+    active = activedClassName;
+  } else {
+    active = "";
+  }
+  console.log("setActivedClass (location)", location, `${basePath}${to}`);
+}
 </script>
+
+<li class="nav-item px-3">
+    <a class="nav-link {active}" href='{basePath}{ to }' on:click='{event => navigate(event, to)}'>
+        <slot></slot>
+    </a>
+</li>

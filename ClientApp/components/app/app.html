@@ -1,5 +1,20 @@
+<script>
+    import { onMount } from 'svelte';
+
+    export let menu;
+
+    import MenuComponent from '../navmenu/navmenu.html';
+    import Routes from '../../routes';
+
+    onMount(() => {
+        const target = document.querySelector('#app');
+        new Routes(target);
+        // console.log('router', router);
+    });
+</script>
+
 <div class="sidebar">
-    <MenuComponent ref:menu />
+    <MenuComponent bind:this={menu} />
 </div>
 <div class="main">
     <div class="top-row px-4">
@@ -9,19 +24,3 @@
     <div id="app" class="content px-4">
     </div>
 </div>
-
-<script>
-    import MenuComponent from '../navmenu/navmenu.html';
-    import Routes from '../../routes';
-
-    export default {
-        components: {
-            MenuComponent
-        },
-        oncreate() {
-            const target = document.querySelector('#app');
-            new Routes(target);
-            // console.log('router', router);
-        },
-    };
-</script>

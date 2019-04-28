@@ -1,3 +1,20 @@
+<script>
+    import { onMount } from 'svelte';
+
+    import RouterLink from './routerlink.html';
+    import roadtrip from 'roadtrip';
+
+    export let currentPath = '';
+
+    onMount(() => {
+        roadtrip.Routing.notify = routeData => {
+            const path = routeData ? routeData.pathname : '';
+            currentPath = '/' + path;
+            console.log('NavMenu : routeData', routeData, path, currentPath);
+        };
+    });
+</script>
+
 <div class="top-row pl-4 navbar navbar-dark">
     <a class="navbar-brand" href="">ASP.Net Svelte</a>
     <button class="navbar-toggler">
@@ -17,27 +34,3 @@
         </RouterLink>
     </ul>
 </div>
-
-<script>
-    import RouterLink from './routerlink.html';
-    import roadtrip from 'roadtrip';
-
-    export default {
-        data() {
-            return {
-                currentPath: '',
-            }
-        },
-        components: {
-            RouterLink
-        },
-        oncreate() {
-            roadtrip.Routing.notify = routeData => {
-                const { currentPath } = this.get();
-                const path = routeData ? routeData.pathname : '';
-                this.set({ currentPath: '/' + path });
-                console.log('NavMenu : routeData', routeData, path, currentPath);
-            };
-        },
-    }
-</script>

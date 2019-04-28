@@ -1,3 +1,17 @@
+<script>
+    import { onMount } from 'svelte';
+
+    export let forecasts = [];
+
+    onMount(() => {
+        fetch(basePath + '/api/SampleData/WeatherForecasts')
+            .then(response => response.json())
+            .then(data => {
+                forecasts = data;
+            });
+    });
+</script>
+
 <div>
     <h1>Weather forecast</h1>
 
@@ -29,20 +43,3 @@
     {/if}
     
 </div>
-
-<script>
-    export default {
-        data() {
-            return {
-                forecasts: []
-            };
-        },
-        oncreate () {
-            fetch(basePath + '/api/SampleData/WeatherForecasts')
-                .then(response => response.json())
-                .then(data => {
-                    this.set({forecasts: data});
-                });
-        }
-    }    
-</script>
