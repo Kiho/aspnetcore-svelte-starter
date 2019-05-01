@@ -12,6 +12,7 @@ module.exports = (env) => {
 
     return [{
         mode,
+        devtool: isDevBuild ? 'source-map' : false,
         stats: { modules: false },
         context: __dirname,
         resolve: { extensions: [ '.js', '.mjs', '.ts' ] },
@@ -24,12 +25,11 @@ module.exports = (env) => {
                     type: 'javascript/auto'
                 },
                 { test: /\.html$/, include: /ClientApp/, 
-                        use: { loader: 'svelte-loader', options: { dev: isDevBuild,
-                            // onwarn: (warning, defaultHandler) => {
-                            //     if (ignoreTheseWarnings.indexOf(warning.code) > -1) return;
-                            //     console.log('warning : - ', warning);
-                            //     defaultHandler(warning);
-                            // },  
+                    use: { 
+                        loader: 'svelte-loader', 
+                        options: { 
+                            dev: isDevBuild,
+                            emitCss: true, 
                         },
                     } 
                 },
@@ -61,18 +61,9 @@ module.exports = (env) => {
                 manifest: require('./wwwroot/dist/vendor-manifest.json')
             })
         ].concat(isDevBuild ? [
-            // Plugins that apply in development builds only
-            new webpack.SourceMapDevToolPlugin({
-                filename: '[file].map', // Remove this line if you prefer inline source maps
-                moduleFilenameTemplate: path.relative(bundleOutputDir, '[resourcePath]') // Point sourcemap entries to the original file locations on disk
-            })
         ] : [
             new MiniCssExtractPlugin({ filename: 'site.css' }),
             new UglifyJSPlugin({sourceMap: true}),
-            new webpack.SourceMapDevToolPlugin({
-                filename: '[file].map', // Remove this line if you prefer inline source maps
-                moduleFilenameTemplate: path.relative(bundleOutputDir, '[resourcePath]') // Point sourcemap entries to the original file locations on disk
-            })
         ])
     }];
 };
