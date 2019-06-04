@@ -1,11 +1,7 @@
-import roadtrip from 'roadtrip';
-
-roadtrip.Routing = {};
-
 export default class IndexHandler {
     static notify: (data: string) => void;
-
-    component
+    
+    component;
 
     constructor(private ctor, private target) {
         
