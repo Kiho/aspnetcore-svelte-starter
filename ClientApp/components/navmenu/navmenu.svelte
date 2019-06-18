@@ -1,7 +1,7 @@
 <script>
     import { onMount } from 'svelte';
     import IndexHandler from '../../index.handler';
-    import RouterLink from './routerlink.html';
+    import RouterLink from './routerlink.svelte';
 
     export let currentPath = '';
 

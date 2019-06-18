@@ -24,7 +24,7 @@ module.exports = (env) => {
                     include: /node_modules/,
                     type: 'javascript/auto'
                 },
-                { test: /\.html$/, include: /ClientApp/, 
+                { test: /\.svelte$/, include: /ClientApp/, 
                     use: { 
                         loader: 'svelte-loader', 
                         options: { 

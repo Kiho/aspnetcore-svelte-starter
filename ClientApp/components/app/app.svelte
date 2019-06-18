@@ -1,6 +1,6 @@
 <script>
     import { onMount } from 'svelte';
-    import MenuComponent from '../navmenu/navmenu.html';
+    import MenuComponent from '../navmenu/navmenu.svelte';
     import Routes from '../../routes';
 
     export let menu;

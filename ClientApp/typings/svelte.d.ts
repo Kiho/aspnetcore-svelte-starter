@@ -1,4 +1,4 @@
-declare module "*.html" {
+declare module "*.svelte" {
     interface Component {
       new (options: any): any;
     }

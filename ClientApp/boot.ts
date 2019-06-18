@@ -3,7 +3,7 @@
  */
 
 import Svelte from 'svelte';
-import App from './components/app/app.html';
+import App from './components/app/app.svelte';
 import * as config from './config';
 
 config.init();
