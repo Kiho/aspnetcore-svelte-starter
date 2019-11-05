@@ -4,13 +4,11 @@
 
     export let forecasts = [];
 
-    onMount(() => {
-        fetch(basePath + '/api/SampleData/WeatherForecasts')
-            .then(response => response.json())
-            .then(data => {
-                forecasts = data;
-            });
-    });
+    fetch(basePath + '/api/SampleData/WeatherForecasts')
+        .then(response => response.json())
+        .then(data => {
+            forecasts = data;
+        });
 </script>
 
 <div>
