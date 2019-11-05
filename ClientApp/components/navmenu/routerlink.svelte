@@ -13,9 +13,7 @@
     export let location = '';
     export let item = null;
 
-    afterUpdate(() => {
-        setActivedClass(location);
-    });
+    $: setActivedClass(location);
 
     function navigate(e, to) {
         if (e && e.preventDefault) e.preventDefault();
