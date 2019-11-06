@@ -15,15 +15,13 @@ module.exports = (env) => {
         devtool: isDevBuild ? 'source-map' : false,
         stats: { modules: false },
         context: __dirname,
-        resolve: { extensions: [ '.js', '.mjs', '.ts' ] },
+        resolve: { 
+            extensions: ['.ts', '.mjs', '.js', '.json', '.svelte'],
+            mainFields: ['svelte', 'module', 'main'],
+        },
         entry: { 'main': './ClientApp/boot.ts' },
         module: {
             rules: [
-                {
-                    test: /\.mjs$/,
-                    include: /node_modules/,
-                    type: 'javascript/auto'
-                },
                 { test: /\.svelte$/, include: /ClientApp/, 
                     use: { 
                         loader: 'svelte-loader', 
