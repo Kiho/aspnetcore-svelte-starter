@@ -1,17 +1,14 @@
 <script>
-    import { onMount } from 'svelte';
     import IndexHandler from '../../index.handler';
     import RouterLink from './routerlink.svelte';
 
     export let currentPath = '';
 
-    onMount(() => {
-        IndexHandler.notify = routeData => {
-            const path = routeData ? routeData.pathname : '';
-            currentPath = '/' + path;
-            // console.log('NavMenu : routeData', routeData, path, currentPath);
-        };
-    });
+    IndexHandler.notify = routeData => {
+        const path = routeData ? routeData.pathname : '';
+        currentPath = '/' + path;
+        // console.log('NavMenu : routeData', routeData, path, currentPath);
+    };
 </script>
 
 <div class="top-row pl-4 navbar navbar-dark">
