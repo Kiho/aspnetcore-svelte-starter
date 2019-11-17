@@ -17,7 +17,8 @@ on the [Vue SPA template](https://github.com/aspnet/JavaScriptServices/tree/dev/
 # Prerequisites:
  * nodejs > 6
  * VS2017 or VS Code
- * dotnet core - [NET Core SDK 2.2 (or later)](https://www.microsoft.com/net/download/core) for Windows, Mac, or Linux
+ * dotnet core - [NET Core SDK 2.2](https://www.microsoft.com/net/download/core) for Windows, Mac, or Linux
+- If you need Core 3.0 then go here https://github.com/Kiho/aspcore-spa-cli/tree/master/samples/SvelteCliSample
 
 # Installation / Getting Started:
  * Clone this repo
