@@ -18,7 +18,8 @@ on the [Vue SPA template](https://github.com/aspnet/JavaScriptServices/tree/dev/
  * nodejs > 6
  * VS2017 or VS Code
  * dotnet core - [NET Core SDK 2.2](https://www.microsoft.com/net/download/core) for Windows, Mac, or Linux
-- If you need Core 3.0 then go here https://github.com/Kiho/aspcore-spa-cli/tree/master/samples/SvelteCliSample
+- If you need Core 3.0 then go here [https://github.com/Kiho/aspcore-spa-cli/tree/master/samples/SvelteCliSample](https://github.com/Kiho/aspcore-spa-cli/tree/master/samples/SvelteCliSample)
+- Core 3.0 HMR example with svite: [https://github.com/Kiho/aspcore-spa-cli/tree/master/samples/SviteSample](https://github.com/Kiho/aspcore-spa-cli/tree/master/samples/SviteSample)
 
 # Installation / Getting Started:
  * Clone this repo
